@@ -4,6 +4,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import Student
 from .serializers import StudentSerializer
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def home(request):
@@ -39,6 +42,7 @@ def student_detail(request, pk):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+        logger.error(f"Validation errors: {serializer.errors}")
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     elif request.method == 'DELETE':
