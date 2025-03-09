@@ -4,5 +4,5 @@ from . import views
 urlpatterns = [
     path('students/', views.studentsview, name='student-view'),  # ✅ Removed ()
     path('jeev/',views.jeev,name='jeev'),
-    path('students/<int:pk>',views.student_detail,name='student-detail')
+    path('student/<int:pk>/',views.student_detail,name='student-detail')
 ]
